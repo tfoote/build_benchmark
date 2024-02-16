@@ -125,6 +125,7 @@ assign_positional_args 1 "${_positionals[@]}"
 
 pull_code () 
 {
+    echo "Pulling in $PWD"
     mkdir -p src
     vcs import --input $1 src &> /dev/null
     rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
@@ -132,9 +133,10 @@ pull_code ()
 
 run_benchmark ()
 {
-	rm -rf build/ install/ log/
-	rm -f out.txt
-	colcon build --executor sequential --packages-up-to $TOP_PACKAGE &> out.txt
+    echo "Cleaning and rebuilding in $PWD"
+    rm -rf build/ install/ log/
+    rm -f out.txt
+    colcon build --executor sequential --packages-up-to $TOP_PACKAGE &> out.txt
 }
 
 parse_and_print ()
@@ -145,7 +147,9 @@ parse_and_print ()
 
 for repo in "${_positionals[@]}"
 do
+    echo "-----------------"
     echo "Using repos file: $repo"
+    echo "-----------------"
     mkdir -p $repo-src
     cd $repo-src
     pull_code ../$repo
@@ -153,7 +157,7 @@ do
     do
 	echo "Running benchmark: $((ii + 1))"
 	run_benchmark
-	parse_and_print		
+	parse_and_print
     done
     cd ..
 done

@@ -7,7 +7,7 @@ use run_benchmark.sh as an example
 To setup an isolated environmnet
 
 
-rocker --user --volume `pwd`:/tmp/benchmark
+rocker --user --volume `pwd`:/tmp/benchmark -- osrf/ros:rolling-desktop
 
 Inside
 * `rosdep update`
