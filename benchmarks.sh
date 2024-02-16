@@ -148,11 +148,21 @@ parse_and_print ()
 for repo in "${_positionals[@]}"
 do
     echo "-----------------"
-    echo "Using repos file: $repo"
+    echo "Preparing repos file: $repo"
     echo "-----------------"
     mkdir -p $repo-src
     cd $repo-src
     pull_code ../$repo
+    cd ..
+done
+
+
+for repo in "${_positionals[@]}"
+do
+    echo "-----------------"
+    echo "Benchmarking repos file: $repo"
+    echo "-----------------"
+    cd $repo-src
     for ((ii = 0; ii < _arg_count; ii++))
     do
 	echo "Running benchmark: $((ii + 1))"
