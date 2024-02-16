@@ -136,6 +136,8 @@ run_benchmark ()
     echo "Cleaning and rebuilding in $PWD"
     rm -rf build/ install/ log/
     rm -f out.txt
+    # Workaround for first build of rosidl_generator_py not finding python on first build
+    colcon build --executor sequential --packages-up-to rosidl_generator_py &> out.txt
     colcon build --executor sequential --packages-up-to $TOP_PACKAGE &> out.txt
 }
 
