@@ -125,7 +125,7 @@ assign_positional_args 1 "${_positionals[@]}"
 
 pull_code () 
 {
-    echo "Pulling in $PWD"
+    echo "$1: Pulling in $PWD"
     mkdir -p src
     vcs import --input $1 src &> /dev/null
     rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"

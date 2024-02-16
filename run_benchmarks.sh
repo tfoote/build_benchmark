@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-bash benchmarks.sh baseline.repos streamlined.repos protobuf.repos streamline_protobuf.repos
+bash benchmarks.sh baseline.repos streamlined.repos protobuf.repos streamlined_protobuf.repos
