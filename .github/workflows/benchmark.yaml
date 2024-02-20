@@ -18,4 +18,4 @@ jobs:
       - name: rosdep update
         run: rosdep update
       - name: run benchmark
-        run: run_benchmarks.sh
+        run: bash run_benchmarks.sh
