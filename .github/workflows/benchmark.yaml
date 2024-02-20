@@ -1,0 +1,21 @@
+name: Basic Benchmark
+on: [push, pull_request]
+
+jobs:
+  basic_benchmark:
+    name: Basic Benchmark
+    runs-on: ubuntu-latest
+    container:
+      image: ros:rolling
+    steps:
+      - uses: ros-tooling/setup-ros@v0.7
+      - name: checkout
+        uses: actions/checkout@v4
+#        with:
+#          path: ros_ws/src
+      - name: apt update
+        run: apt update
+      - name: rosdep update
+        run: rosdep update
+      - name: run benchmark
+        run: run_benchmarks.sh
