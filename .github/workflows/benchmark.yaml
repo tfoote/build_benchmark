@@ -13,9 +13,5 @@ jobs:
         uses: actions/checkout@v4
 #        with:
 #          path: ros_ws/src
-      - name: apt update
-        run: apt update
-      - name: rosdep update
-        run: rosdep update
       - name: run benchmark
         run: bash run_benchmarks.sh
