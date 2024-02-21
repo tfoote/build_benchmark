@@ -137,12 +137,16 @@ run_benchmark ()
     rm -rf build/ install/ log/
     rm -f out.txt
     # Workaround for first build of rosidl_generator_py not finding python on first build
-    colcon build --executor sequential --packages-up-to rosidl_generator_py &> out.txt
-    colcon build --executor sequential --packages-up-to $TOP_PACKAGE &> out.txt
+    colcon build --executor sequential --packages-up-to rosidl_generator_py &> out.tx
+    colcon build --executor sequential --packages-up-to rosidl_core_runtime &> core_runtime.txt
+    colcon build --executor sequential --packages-skip-up-to rosidl_core_runtime --packages-up-to $TOP_PACKAGE &> out.txt
 }
 
 parse_and_print ()
 {
+        echo "Core Build:"
+	grep -R "Summary" core_runtime.txt
+	echo "Instrumented build:"
 	grep -R "Finished <<< $TEST_PACKAGE" out.txt
 	grep -R "Summary" out.txt
 }
@@ -167,7 +171,7 @@ do
     cd $repo-src
     for ((ii = 0; ii < _arg_count; ii++))
     do
-	echo "Running benchmark: $((ii + 1))"
+	echo "Running iteration: $((ii + 1)) of $_arg_count"
 	run_benchmark
 	parse_and_print
     done
