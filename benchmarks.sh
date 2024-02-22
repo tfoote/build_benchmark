@@ -128,7 +128,7 @@ pull_code ()
     echo "$1: Pulling in $PWD"
     mkdir -p src
     vcs import --input $1 src &> /dev/null
-    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+    rosdep install --from-paths src --ignore-src -qy --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
 }
 
 run_benchmark ()
