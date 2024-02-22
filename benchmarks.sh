@@ -13,7 +13,6 @@
 # Argbash is FREE SOFTWARE, see https://argbash.io for more info
 # Generated online by https://argbash.io/generate
 
-
 TOP_PACKAGE=common_interfaces
 TEST_PACKAGE=sensor_msgs
 
@@ -128,7 +127,7 @@ pull_code ()
     echo "$1: Pulling in $PWD"
     mkdir -p src
     vcs import --input $1 src &> /dev/null
-    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+    DEBIAN_FRONTEND=noninteractive rosdep install --from-paths src --ignore-src -qy --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
 }
 
 run_benchmark ()
