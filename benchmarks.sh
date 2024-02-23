@@ -140,6 +140,8 @@ run_benchmark ()
     colcon build --executor sequential --packages-up-to rosidl_generator_py &> out.tx
     colcon build --executor sequential --packages-up-to rosidl_core_runtime &> core_runtime.txt
     colcon build --executor sequential --packages-skip-up-to rosidl_core_runtime --packages-up-to $TOP_PACKAGE &> out.txt
+    rm -rf build/sensor_msgs/ install/sensor_msgs/
+    python3 ../timestamp_trace.py
 }
 
 parse_and_print ()
